@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.screens.MainActivity.ActivityUIModel"/>
+
+    </data>
+
+    <androidx.appcompat.widget.Toolbar
+        style="@style/Toolbar">
+
+        <LinearLayout
+            android:id="@+id/back_bar"
+            style="@style/ToolbarPanel">
+
+            <TextView
+                android:id="@+id/section_name"
+                android:text="@{model.title}"
+                style="@style/ToolbarHeader" />
+
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+</layout>

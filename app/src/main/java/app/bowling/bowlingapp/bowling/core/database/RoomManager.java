@@ -2,7 +2,8 @@ package app.bowling.bowlingapp.bowling.core.database;
 
 import android.content.Context;
 
-import rabaapp.raba.app.raba.core.database.models.User;
+import app.bowling.bowlingapp.bowling.core.database.models.User;
+
 
 public class RoomManager {
 

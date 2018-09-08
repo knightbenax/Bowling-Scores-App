@@ -1,9 +1,9 @@
 package app.bowling.bowlingapp.bowling.core.daggger.modules.store;
 
+import app.bowling.bowlingapp.bowling.core.database.OfflineStore;
+import app.bowling.bowlingapp.bowling.core.database.RoomManager;
 import dagger.Module;
 import dagger.Provides;
-import rabaapp.raba.app.raba.core.database.OfflineStore;
-import rabaapp.raba.app.raba.core.database.RoomManager;
 
 
 @Module(includes = {RoomManagerModule.class})

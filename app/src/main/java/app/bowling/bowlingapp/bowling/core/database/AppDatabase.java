@@ -1,16 +1,17 @@
 package app.bowling.bowlingapp.bowling.core.database;
 
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.content.Context;
-import android.support.annotation.NonNull;
 
-import rabaapp.raba.app.raba.core.database.dao.UserDao;
-import rabaapp.raba.app.raba.core.database.models.User;
+import android.content.Context;
+import androidx.annotation.NonNull;
+
+import androidx.room.Database;
+import androidx.room.DatabaseConfiguration;
+import androidx.room.InvalidationTracker;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import app.bowling.bowlingapp.bowling.core.database.dao.UserDao;
+import app.bowling.bowlingapp.bowling.core.database.models.User;
 
 @Database(entities = {User.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

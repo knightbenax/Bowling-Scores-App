@@ -8,22 +8,22 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-import rabaapp.raba.app.raba.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import app.bowling.bowlingapp.bowling.R;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class CoreActivity extends RxAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        settingStatusBarTransparent();
         super.onCreate(savedInstanceState);
+        //settingStatusBarTransparent();
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     public void settingStatusBarTransparent() {

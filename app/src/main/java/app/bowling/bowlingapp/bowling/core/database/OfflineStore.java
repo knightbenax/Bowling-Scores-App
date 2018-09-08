@@ -2,7 +2,7 @@ package app.bowling.bowlingapp.bowling.core.database;
 
 import javax.inject.Inject;
 
-import rabaapp.raba.app.raba.core.database.models.User;
+import app.bowling.bowlingapp.bowling.core.database.models.User;
 
 public class OfflineStore {
 

@@ -1,13 +1,11 @@
 package app.bowling.bowlingapp.bowling.core.daggger.modules.viewmodels;
 
 
+import app.bowling.bowlingapp.bowling.core.viewmodels.CoreViewModel;
 import dagger.Module;
 import dagger.Provides;
-import rabaapp.raba.app.raba.core.daggger.modules.network.RetrofitModule;
-import rabaapp.raba.app.raba.core.viewmodels.CoreViewModel;
 
-
-@Module(includes = {RetrofitModule.class})
+@Module
 public class CoreViewModelModule {
 
     @Provides

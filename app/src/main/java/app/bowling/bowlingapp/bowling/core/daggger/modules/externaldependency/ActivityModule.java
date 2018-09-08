@@ -5,7 +5,6 @@ import android.app.Activity;
 import dagger.Module;
 import dagger.Provides;
 
-
 @Module
 public class ActivityModule {
 

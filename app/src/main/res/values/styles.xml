@@ -1,11 +1,64 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="LayoutMatchParent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="LayoutWrapContent">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="LayoutMatchWidth">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="LayoutMatchHeight">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="MainBackground" parent="LayoutMatchParent">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="Toolbar">
+        <item name="android:contentInsetLeft" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetStart" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetRight" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetEnd" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetStartWithNavigation" tools:targetApi="n">0dp</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ToolbarPanel" parent="LayoutWrapContent">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ToolbarHeader" parent="LayoutWrapContent">
+        <item name="android:layout_marginLeft">@dimen/size_6</item>
+        <item name="android:layout_marginTop">@dimen/size_4</item>
+        <item name="android:layout_marginBottom">@dimen/size_4</item>
+        <item name="android:textSize">@dimen/font_26</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
     </style>
 
 </resources>

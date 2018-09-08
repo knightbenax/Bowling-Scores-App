@@ -1,13 +1,13 @@
 package app.bowling.bowlingapp.bowling.core.database.dao;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-
 import java.util.List;
 
-import rabaapp.raba.app.raba.core.database.models.User;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import app.bowling.bowlingapp.bowling.core.database.models.User;
+
 
 @Dao
 public interface UserDao {
