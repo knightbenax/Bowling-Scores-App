@@ -10,15 +10,15 @@ import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
-import app.bowling.bowlingapp.bowling.core.database.dao.UserDao;
-import app.bowling.bowlingapp.bowling.core.database.models.User;
+import app.bowling.bowlingapp.bowling.core.database.dao.GameDao;
+import app.bowling.bowlingapp.bowling.core.database.models.Game;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {Game.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
-    public abstract UserDao userDao();
+    public abstract GameDao gameDao();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {

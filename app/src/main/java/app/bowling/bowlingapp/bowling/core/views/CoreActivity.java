@@ -10,10 +10,11 @@ import android.view.WindowManager;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import app.bowling.bowlingapp.bowling.R;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-public class CoreActivity extends RxAppCompatActivity {
+public class CoreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

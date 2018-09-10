@@ -10,6 +10,7 @@
     </data>
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar"
         style="@style/Toolbar">
 
         <LinearLayout

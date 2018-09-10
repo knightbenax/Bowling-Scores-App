@@ -2,7 +2,7 @@ package app.bowling.bowlingapp.bowling.core.database;
 
 import javax.inject.Inject;
 
-import app.bowling.bowlingapp.bowling.core.database.models.User;
+import app.bowling.bowlingapp.bowling.core.database.models.Game;
 
 public class OfflineStore {
 
@@ -13,25 +13,21 @@ public class OfflineStore {
         this.roomManager = roomManager;
     }
 
-    public void saveUser(String name, String email, String phone, String token, String refreshToken, String wallet){
+    public void saveGame(Game game){
 
-        roomManager.saveUser(name, email, phone, token, refreshToken, wallet);
+        roomManager.saveGame(game);
 
     }
 
-    public void saveUser(User user){
-        roomManager.saveUser(user);
+    public int getGamesCount(){
+        return roomManager.getGamesCount();
     }
 
-    public boolean userExists(){
-        return roomManager.userExists();
+    public void deleteAllGames(){
+        roomManager.deleteAllGames();
     }
 
-    public void deleteUsers(){
-        roomManager.deleteUsers();
-    }
-
-    public User getUser(){
-        return roomManager.getUser();
+    public Game getGameById(String uid){
+        return roomManager.getGameById(uid);
     }
 }

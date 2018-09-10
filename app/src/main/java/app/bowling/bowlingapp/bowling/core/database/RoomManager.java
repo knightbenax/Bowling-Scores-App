@@ -2,7 +2,7 @@ package app.bowling.bowlingapp.bowling.core.database;
 
 import android.content.Context;
 
-import app.bowling.bowlingapp.bowling.core.database.models.User;
+import app.bowling.bowlingapp.bowling.core.database.models.Game;
 
 
 public class RoomManager {
@@ -31,38 +31,25 @@ public class RoomManager {
         return this;
     }
 
-    public User getUser(){
-        return appDatabase.userDao().getSingleUser();
+    public Game getGame(){
+        return appDatabase.gameDao().getSingleGame();
     }
 
-
-    public void saveUser(String name, String email, String phone, String token, String refreshToken, String wallet){
-
-        User user = new User();
-        user.setName(name);
-        user.setPhone(phone);
-        user.setEmail(email);
-        user.setToken(token);
-        user.setRefreshToken(refreshToken);
-        user.setWallet(wallet);
-
-
-        appDatabase.userDao().insert(user);
+    public int getGamesCount(){
+        return appDatabase.gameDao().countGames();
     }
 
-    public void saveUser(User user){
-
-        appDatabase.userDao().insert(user);
+    public Game getGameById(String uid){
+        return appDatabase.gameDao().getSingleGameById(uid);
     }
 
-    public boolean userExists(){
-        int user_count = appDatabase.userDao().countUsers();
+    public void saveGame(Game game){
 
-        return user_count > 0;
+        appDatabase.gameDao().insert(game);
     }
 
-    public void deleteUsers(){
-        appDatabase.userDao().deleteAll();
+    public void deleteAllGames(){
+        appDatabase.gameDao().deleteAll();
     }
 
 

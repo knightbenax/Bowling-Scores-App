@@ -2,15 +2,45 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.screens.MainActivity.ActivityUIModel"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include
             android:id="@+id/toolbar_link"
-            style="@style/LayoutWrapContent"
+            style="@style/LayoutMatchWidth"
             app:layout_constraintTop_toTopOf="parent"
             layout="@layout/layout_toolbar"/>
+
+
+       <LinearLayout
+           style="@style/NoGamesHolder"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent">
+
+           <ImageView style="@style/NoGamesImage" />
+
+           <TextView
+               style="@style/NoGamesText"
+               android:text="@string/no_games_played" />
+       </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -22,19 +52,21 @@
                 android:id="@+id/bottom_app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 app:backgroundTint="@color/colorAccent"
                 app:fabCradleMargin="@dimen/size_8"
-                app:fabAlignmentMode="end" />
+                app:fabCradleRoundedCornerRadius="@dimen/size_4"
+                android:layout_gravity="bottom"
+                app:fabAlignmentMode="end"
+                 />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/LayoutWrapContent"
                 android:src="@drawable/plus"
                 app:backgroundTint = "@color/black"
                 android:scaleType="center"
                 app:borderWidth="@dimen/size_0"
+                android:onClick="@{(v) -> model.showNewDialog(fab)}"
                 app:fabSize="normal"
                 app:layout_anchor="@id/bottom_app_bar" />
 

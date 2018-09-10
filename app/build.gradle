@@ -41,6 +41,7 @@ dependencies {
         exclude module: 'support-fragment'
         exclude module: 'appcompat-v7'
     }
+
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
@@ -64,5 +65,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion" // use kapt for Kotlin
     // Test helpers
     testImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
+    //Utils
+    implementation 'com.google.code.gson:gson:2.8.5'
 
 }
