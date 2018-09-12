@@ -4,7 +4,7 @@
     <data>
         <variable
             name="model"
-            type="app.bowling.bowlingapp.bowling.screens.MainActivity.ActivityUIModel"/>
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityUIModel"/>
     </data>
 
     <LinearLayout
@@ -24,6 +24,7 @@
         <EditText
             android:hint="@string/player_name"
             android:id="@+id/player_name"
+            android:text="@={model.player_name}"
             style="@style/Dialog.EditText" />
 
         <LinearLayout
@@ -36,11 +37,13 @@
             <Button
                 style="@style/Dialog.Button"
                 android:id="@+id/cancel_button"
+                android:onClick="@{(v) -> model.cancelDialog(cancelButton)}"
                 android:text="@string/cancel"
                 />
 
             <Button
                 style="@style/Dialog.Button"
+                android:onClick="@{(v) -> model.startGame(startButton)}"
                 android:id="@+id/start_button"
                 android:text="@string/start"
                 />

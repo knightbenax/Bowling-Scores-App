@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="java.lang.Integer" />
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityGameScreenUIModel"/>
+    </data>
+
+
+    <LinearLayout
+        style="@style/Frame">
+
+        <LinearLayout
+            style="@style/FrameRow.Right">
+
+            <LinearLayout
+                style="@style/FrameRowTop">
+
+                <EditText
+                    android:id="@+id/one"
+                    style="@style/FrameRowScore.Left"
+                    />
+
+                <EditText
+                    android:id="@+id/two"
+                    style="@style/FrameRowScore.Right" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/score_one"
+                style="@style/FrameScore" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

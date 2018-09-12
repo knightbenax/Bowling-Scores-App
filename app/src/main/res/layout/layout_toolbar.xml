@@ -5,7 +5,7 @@
     <data>
         <variable
             name="model"
-            type="app.bowling.bowlingapp.bowling.screens.MainActivity.ActivityUIModel"/>
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityUIModel"/>
 
     </data>
 
@@ -16,6 +16,7 @@
         <LinearLayout
             android:id="@+id/back_bar"
             style="@style/ToolbarPanel">
+
 
             <TextView
                 android:id="@+id/section_name"

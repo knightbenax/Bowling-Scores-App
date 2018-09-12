@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityGameScreenUIModel"/>
+
+    </data>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tool_bar"
+        style="@style/Toolbar">
+
+        <LinearLayout
+            android:id="@+id/back_bar"
+            android:orientation="horizontal"
+            style="@style/LayoutMatchWidth">
+
+            <ImageButton
+                android:layout_width="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_12"
+                android:background="@null"
+                android:src="@drawable/back"
+                android:scaleType="centerInside"
+                android:id="@+id/back_btn"
+                android:visibility="@{model.back_btn_visibility}"
+                android:onClick="@{(v) -> model.backToGamesScreen(backBtn)}"
+                android:layout_marginRight="@dimen/size_8"
+                android:contentDescription="@string/back"
+                android:layout_height="@dimen/size_20"
+                android:layout_marginEnd="@dimen/size_8" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                style="@style/Toolbar.Parent">
+
+                <TextView
+                    android:id="@+id/section_name"
+                    android:text="@{model.title}"
+                    style="@style/ToolbarHeader" />
+
+                <TextView
+                    android:id="@+id/game_date"
+                    android:text="@{model.game_date}"
+                    style="@style/ToolbarText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/size_8"
+                android:layout_marginRight="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:text="@={model.total_score}"
+                    style="@style/Score.White.Text"
+                    android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                    android:text="@string/in_progress"
+                    android:background="#569A09"
+                    android:paddingTop="@dimen/size_4"
+                    android:paddingRight="@dimen/size_8"
+                    android:paddingLeft="@dimen/size_8"
+                    android:paddingBottom="@dimen/size_4"
+                    android:textColor="@color/colorAccent"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+</layout>

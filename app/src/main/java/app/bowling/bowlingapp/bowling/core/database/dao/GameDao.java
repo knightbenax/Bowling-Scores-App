@@ -5,6 +5,7 @@ import java.util.List;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import app.bowling.bowlingapp.bowling.core.database.models.Game;
 
@@ -15,7 +16,7 @@ public interface GameDao {
     @Query("SELECT * FROM game")
     List<Game> getAll();
 
-    @Query("SELECT * FROM game LIMIT 1")
+    @Query("SELECT * FROM game ORDER BY uid DESC LIMIT 1")
     Game getSingleGame();
 
     @Query("SELECT * FROM game WHERE uid = :uid LIMIT 1")
@@ -39,7 +40,7 @@ public interface GameDao {
     @Query("DELETE FROM game")
     void deleteAll();
 
-    @Insert
-    void insert(Game game);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insert(Game game);
 
 }

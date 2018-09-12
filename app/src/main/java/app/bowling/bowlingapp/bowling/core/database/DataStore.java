@@ -1,5 +1,7 @@
 package app.bowling.bowlingapp.bowling.core.database;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import app.bowling.bowlingapp.bowling.core.database.models.Game;
@@ -15,12 +17,16 @@ public class DataStore {
         this.offlineStore = offlineStore;
     }
 
-    public void saveGame(Game game){
-        offlineStore.saveGame(game);
+    public long saveGame(Game game){
+        return offlineStore.saveGame(game);
     }
 
     public int getGamesCount(){
         return offlineStore.getGamesCount();
+    }
+
+    public List<Game> getAllGames(){
+        return offlineStore.getAllGames();
     }
 
     public void deleteAllGames(){

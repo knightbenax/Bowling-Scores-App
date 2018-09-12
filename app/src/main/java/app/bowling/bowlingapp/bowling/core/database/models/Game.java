@@ -13,16 +13,8 @@ import app.bowling.bowlingapp.bowling.core.models.FrameScore;
 @Entity(tableName = "game")
 public class Game {
 
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
     @PrimaryKey(autoGenerate = true)
-    private int uid;
+    private long uid;
 
     @ColumnInfo(name = "player")
     private String player;
@@ -68,6 +60,13 @@ public class Game {
         this.scores = scores;
     }
 
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
 
 
 

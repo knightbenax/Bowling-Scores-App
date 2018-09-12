@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="game"
+            type="app.bowling.bowlingapp.bowling.core.models.ExtendedGame"/>
+    </data>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@drawable/black_trans"
+        android:padding="@dimen/size_14"
+        android:layout_marginBottom="@dimen/size_16"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            style="@style/SingleGameParent">
+
+            <TextView
+                android:id="@+id/section_name"
+                android:text="@{game.player}"
+                style="@style/SingleGameHeader" />
+
+            <TextView
+                android:id="@+id/game_date"
+                android:text="@{game.date_started_readable}"
+                style="@style/ToolbarText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/size_10"
+            style="@style/LayoutWrapContent">
+
+            <TextView
+                android:text="@={game.total_score_string}"
+                style="@style/Score.White.Text"
+                android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="wrap_content"
+                android:text="@string/in_progress"
+                android:id="@+id/progress_indicator"
+                android:background="#569A09"
+                android:paddingTop="@dimen/size_4"
+                android:paddingRight="@dimen/size_8"
+                android:paddingLeft="@dimen/size_8"
+                android:paddingBottom="@dimen/size_4"
+                android:textColor="@color/colorAccent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

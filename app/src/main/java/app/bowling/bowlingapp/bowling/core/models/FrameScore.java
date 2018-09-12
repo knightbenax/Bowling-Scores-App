@@ -20,5 +20,10 @@ public class FrameScore {
 
     String firstRow, secondRow;
 
+    public FrameScore(String firstRow, String secondRow){
+        this.firstRow = firstRow;
+        this.secondRow = secondRow;
+    }
+
 
 }

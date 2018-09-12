@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/size_10"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_link"
+            style="@style/LayoutMatchWidth"
+            app:layout_constraintTop_toTopOf="parent"
+            layout="@layout/layout_game_screen_toolbar"/>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/size_16"
+            android:layout_marginLeft="@dimen/size_16"
+            android:layout_marginTop="@dimen/size_32"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_link"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/size_50"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:layout_marginBottom="@dimen/size_32"
+                    layout="@layout/layout_frame"
+                    android:id="@+id/first_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+
+                <include
+                    android:layout_marginBottom="@dimen/size_32"
+                    layout="@layout/layout_frame"
+                    android:id="@+id/second_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+
+                <include
+                    android:layout_marginBottom="@dimen/size_32"
+                    layout="@layout/layout_frame"
+                    android:id="@+id/third_row"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+
+                <include
+                    android:id="@+id/fourth_row"
+                    layout="@layout/layout_last_frame"/>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</layout>

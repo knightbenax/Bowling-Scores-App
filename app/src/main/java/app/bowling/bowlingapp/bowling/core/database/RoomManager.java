@@ -2,6 +2,8 @@ package app.bowling.bowlingapp.bowling.core.database;
 
 import android.content.Context;
 
+import java.util.List;
+
 import app.bowling.bowlingapp.bowling.core.database.models.Game;
 
 
@@ -31,6 +33,10 @@ public class RoomManager {
         return this;
     }
 
+    public List<Game> getAllGames(){
+        return appDatabase.gameDao().getAll();
+    }
+
     public Game getGame(){
         return appDatabase.gameDao().getSingleGame();
     }
@@ -43,9 +49,8 @@ public class RoomManager {
         return appDatabase.gameDao().getSingleGameById(uid);
     }
 
-    public void saveGame(Game game){
-
-        appDatabase.gameDao().insert(game);
+    public long saveGame(Game game){
+        return appDatabase.gameDao().insert(game);
     }
 
     public void deleteAllGames(){

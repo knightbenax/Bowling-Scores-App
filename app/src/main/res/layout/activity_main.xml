@@ -4,12 +4,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/MainBackground"
+        android:id="@+id/parent"
         tools:context=".screens.MainActivity">
 
         <include
             android:id="@+id/layout_games_link"
             style="@style/LayoutMatchParent"
             layout="@layout/layout_games"/>
+
+        <include
+            android:id="@+id/layout_game_screen_link"
+            style="@style/LayoutMatchParent"
+            android:visibility="gone"
+            layout="@layout/layout_game_screen"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
