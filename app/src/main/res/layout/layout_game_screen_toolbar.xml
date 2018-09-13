@@ -54,6 +54,7 @@
                 android:layout_marginTop="@dimen/size_8"
                 android:layout_marginRight="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_16"
+
                 android:layout_height="wrap_content">
 
 
@@ -69,6 +70,7 @@
                     android:paddingRight="@dimen/size_8"
                     android:paddingLeft="@dimen/size_8"
                     android:paddingBottom="@dimen/size_4"
+                    android:visibility="@{model.in_progress_tag}"
                     android:textColor="@color/colorAccent"
                     android:layout_height="wrap_content"/>
 

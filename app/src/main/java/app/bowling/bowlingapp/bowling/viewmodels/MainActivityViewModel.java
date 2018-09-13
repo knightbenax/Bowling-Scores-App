@@ -23,6 +23,7 @@ import app.bowling.bowlingapp.bowling.core.database.DataStore;
 import app.bowling.bowlingapp.bowling.core.database.models.Game;
 import app.bowling.bowlingapp.bowling.core.models.FrameScore;
 import app.bowling.bowlingapp.bowling.core.viewmodels.CoreViewModel;
+import app.bowling.bowlingapp.bowling.core.views.CoreActivity;
 import app.bowling.bowlingapp.bowling.databinding.LayoutNewDialogBinding;
 import app.bowling.bowlingapp.bowling.screens.MainActivity;
 
@@ -54,14 +55,18 @@ public class MainActivityViewModel extends CoreViewModel {
         return dataStore.getAllGames();
     }
 
+    public void deleteGames(String uid){
+        dataStore.deleteGames(uid);
+    }
+
     public void setNewActivityUIModelInstance(String title, MainActivity mainActivity){
         activityUIModel = new ActivityUIModel(title, mainActivity);
         context = mainActivity;
         this.mainActivity = mainActivity;
     }
 
-    public void setNewActivityGameScreenUIModelInstance(Game game, MainActivity mainActivity){
-        activityGameScreenUIModel = new ActivityGameScreenUIModel(game, mainActivity);
+    public void setNewActivityGameScreenUIModelInstance(Game game, MainActivity mainActivity, boolean newGame){
+        activityGameScreenUIModel = new ActivityGameScreenUIModel(game, mainActivity, newGame);
         context = mainActivity;
         this.mainActivity = mainActivity;
     }
@@ -121,6 +126,10 @@ public class MainActivityViewModel extends CoreViewModel {
         }
 
 
+        public void disableSelected(){
+            mainActivity.unselectItems();
+        }
+
         public void showNewDialog(View view){
 
             /**
@@ -146,9 +155,12 @@ public class MainActivityViewModel extends CoreViewModel {
                 //Snackbar.make(bowlingDialog.getWindow().getDecorView(), "You need a player name", Snackbar.LENGTH_SHORT).show();
                 Toast.makeText(context, "You need a player name", Toast.LENGTH_SHORT).show();
             } else {
+                CoreActivity.hideKeyboard(mainActivity);
+
                 if (bowlingDialog != null){
                     bowlingDialog.dismiss();
                 }
+
 
                 //save to database
                 Game game = new Game();
@@ -191,6 +203,16 @@ public class MainActivityViewModel extends CoreViewModel {
 
         MainActivity mainActivity;
 
+        int in_progress_tag = View.VISIBLE;
+
+        public int getIn_progress_tag() {
+            return in_progress_tag;
+        }
+
+        public void setIn_progress_tag(int in_progress_tag) {
+            this.in_progress_tag = in_progress_tag;
+        }
+
         public String getTotal_score() {
             return total_score;
         }
@@ -224,16 +246,20 @@ public class MainActivityViewModel extends CoreViewModel {
         }
 
 
-        public ActivityGameScreenUIModel(Game game, MainActivity mainActivity){
+        public ActivityGameScreenUIModel(Game game, MainActivity mainActivity, boolean newGame){
             this.title = game.getPlayer();
             currentGame = game;
             this.mainActivity = mainActivity;
             //Log.e("Date", game_date);
-            //less format the date to something human readable
+            //let's format the date to something human readable
             Calendar calendar = Calendar.getInstance(Locale.getDefault());
             calendar.setTimeInMillis(Long.parseLong(game.getDate_started()));
             this.game_date = android.text.format.DateFormat.format("E, MMM dd yyyy\nhh:mm a", calendar).toString();
-            loadGameScores(currentGame);
+
+            if (newGame){
+                //if it's a new game initialise the List with empty scores
+                loadGameScores(currentGame);
+            }
         }
 
         public void backToGamesScreen(View view){
@@ -244,9 +270,11 @@ public class MainActivityViewModel extends CoreViewModel {
 
             //we want to load the game with empty slots so we
             //can put the scores in based on the frame number
+            //we are using 14 to represent empty states. Since
+            //you can never get a 14 score.
             List<FrameScore> thisList = new ArrayList<>();
             for (int i = 0; i < 10; i++){
-                thisList.add(new FrameScore("0", "0"));
+                thisList.add(new FrameScore("14", "14"));
             }
 
             game.setScores(thisList);
@@ -274,11 +302,20 @@ public class MainActivityViewModel extends CoreViewModel {
                     mainActivity.getCurrentFirstEditText(s).setText("");
                 } else if (temp == 10){
                     //a damn strike
-                    currentGame.getScores().get(index).setFirstRow("10");
-                    currentGame.getScores().get(index).setSecondRow("0");
-                    mainActivity.getCurrentSecondEditText(s).setText("0");
-                    frame_pins_left[index] = 0;
-                    calculateScores();
+                    if (index == 9){
+                        //check if it's the ten frame and enable a 3 play on a strike
+                        //if so, show the last field
+                        mainActivity.showLastField();
+                        currentGame.getScores().get(index).setFirstRow("10");
+                        frame_pins_left[index] = 10;
+                    } else {
+                        currentGame.getScores().get(index).setFirstRow("10");
+                        currentGame.getScores().get(index).setSecondRow("0");
+                        mainActivity.getCurrentSecondEditText(s).setText("0");
+                        frame_pins_left[index] = 0;
+                    }
+
+
                 } else {
                     //the number of pins knocked down is less than ten.
                     frame_pins_left[index] = 10 - temp;
@@ -286,21 +323,51 @@ public class MainActivityViewModel extends CoreViewModel {
                     //Not possible. Except with voodoo
                     mainActivity.getCurrentSecondEditText(s).setFilters(new InputFilter[] { new InputFilter.LengthFilter(1)});
                     currentGame.getScores().get(index).setFirstRow(String.valueOf(temp));
-                    calculateScores();
+
                 }
+
+                calculateScores();
             }
         }
 
+
+        public void onFinalFirstScoreChanged(CharSequence s, int start, int before, int count) {
+            //check if the string is not "" to avoid a NumberFormatException
+            if (s.toString().length() > 0){
+                int temp = Integer.parseInt(s.toString());
+
+                mainActivity.setIndexBasedOnSelectedEditText(s);
+                int index = mainActivity.getCurrent_frame();
+
+                if (temp > 10){
+                    //Value entered is more than allowed. Wipe value
+                    mainActivity.getCurrentFirstEditText(s).setText("");
+                } else if (temp == 10){
+                    //a damn strike
+                    //check if it's the ten frame and enable a 3 play on a strike
+                    //if so, show the last field
+                    mainActivity.showLastField();
+                    currentGame.setLast_box(true);
+                    currentGame.getScores().get(index).setFirstRow("10");
+                    frame_pins_left[index] = 10;
+                } else {
+                    //the number of pins knocked down is less than ten.
+                    frame_pins_left[index] = 10 - temp;
+                    //set the max length to one. Since the next pin cannot be more than ten.
+                    //Not possible. Except with voodoo
+                    mainActivity.getCurrentSecondEditText(s).setFilters(new InputFilter[] { new InputFilter.LengthFilter(1)});
+                    currentGame.getScores().get(index).setFirstRow(String.valueOf(temp));
+
+                }
+            }
+        }
 
         public void onSecondScoreChanged(CharSequence s, int start, int before, int count) {
 
             //check if the string is not "" to avoid a NumberFormatException
             if (s.toString().length() > 0){
                 int temp = Integer.parseInt(s.toString());
-
                 int index = mainActivity.getCurrent_frame();
-
-
 
                 if (temp > frame_pins_left[index]){
                     //value entered is more than allowed. Wipe value
@@ -308,54 +375,162 @@ public class MainActivityViewModel extends CoreViewModel {
                 } else if (temp == frame_pins_left[index]) {
                     //a spare has happened. Change the UI.
                     currentGame.getScores().get(index).setSecondRow(String.valueOf(temp));
+                    if (index == 9){
+                        //a spare has happened or strike has happened
+                        mainActivity.showLastField();
+                    } else {
+                        //currentGame.getScores().get(index).setSecondRow(String.valueOf(temp));
+                        mainActivity.enableNextSetOfEditText(s);
+                    }
                     calculateScores();
-                    mainActivity.enableNextSetOfEditText(s);
                 } else {
-                    //not a strike
+                    //not a spare
                     currentGame.getScores().get(index).setSecondRow(String.valueOf(temp));
-                    calculateScores();
                     mainActivity.enableNextSetOfEditText(s);
+                    calculateScores();
+
                 }
             }
         }
 
 
+        public void onFinalSecondScoreChanged(CharSequence s, int start, int before, int count) {
 
-        private void calculateScores(){
+            //check if the string is not "" to avoid a NumberFormatException
+            if (s.toString().length() > 0){
+                int temp = Integer.parseInt(s.toString());
+                int index = mainActivity.getCurrent_frame();
+
+                if (temp > frame_pins_left[index]){
+                    //value entered is more than allowed. Wipe value
+                    mainActivity.getCurrentSecondEditText(s).setText("");
+                } else if (temp == frame_pins_left[index]) {
+                    //a strike has happened.
+                    currentGame.getScores().get(index).setSecondRow(String.valueOf(temp));
+                    mainActivity.showLastField();
+                    currentGame.setLast_box(true);
+                    calculateScores();
+                } else {
+                    //not a spare
+                    currentGame.getScores().get(index).setSecondRow(String.valueOf(temp));
+                    if(!currentGame.isLast_box()){
+                        currentGame.setGame_finished(true);
+                    }
+                    calculateScores();
+                }
+            }
+        }
+
+
+        public void onFinalScoreChanged(CharSequence s, int start, int before, int count) {
+
+            //check if the string is not "" to avoid a NumberFormatException
+            if (s.toString().length() > 0){
+                int temp = Integer.parseInt(s.toString());
+               if (temp > 10){
+                    mainActivity.getLastEditText().setText("");
+               } else {
+                   currentGame.setLast_score(temp);
+                   currentGame.setGame_finished(true);
+                   calculateScores();
+               }
+            }
+        }
+
+
+        int getStrikeScores(int i){
+
+            int score = 0;
+            FrameScore tempScore = currentGame.getScores().get(i + 1);
+            int temp = Integer.parseInt(tempScore.getFirstRow());
+            int temp2 = Integer.parseInt(tempScore.getSecondRow());
+
+            if (temp == 10){
+                //this is another preceeding strike
+                int next_range = i + 2;
+                if (next_range < 10){
+                    tempScore = currentGame.getScores().get(next_range);
+                    //score = 10 + 10 + Integer.parseInt(tempScore.getFirstRow());
+                    if (Integer.parseInt(tempScore.getFirstRow()) != 14){
+                        score = 10 + 10 + Integer.parseInt(tempScore.getFirstRow());
+                    } else {
+                        score = 10 + 10;
+                    }
+                } else {
+                    score = 10 + temp + temp2;
+                }
+            } else {
+                //this check is to take care of the empty state we described as 14.
+                //Needs some serious refactoring
+                if (temp == 14 || temp2 == 14){
+                    score = 10;
+                } else {
+                    score = 10 + temp + temp2;
+                }
+            }
+
+            return score;
+        }
+
+
+        public void calculateScores(){
 
             int total = 0;
 
-            for(int i = 0; i < 10; i++){
+            for(int i = 0; i < 9; i++){
                 FrameScore frameScore = currentGame.getScores().get(i);
-                if (Integer.parseInt(frameScore.getFirstRow()) == 10) {
-                    //a strike happened here. Get the next two scores
-                    FrameScore tempScore = currentGame.getScores().get(i + 1);
-                    scores[i] = 10 + Integer.parseInt(tempScore.getFirstRow()) + Integer.parseInt(tempScore.getSecondRow());
-                } else if ((Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow())) == 10){
-                    //a spare happened here. Get the next score
-                    FrameScore tempScore = currentGame.getScores().get(i + 1);
-                    scores[i] = 10 + Integer.parseInt(tempScore.getFirstRow());
+                if(!frameScore.getFirstRow().equals("14") && !frameScore.getSecondRow().equals("14")){
+                    if (Integer.parseInt(frameScore.getFirstRow()) == 10) {
+                        //a strike happened here. Get the next two scores
+                        scores[i] = getStrikeScores(i);
+                    } else if ((Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow())) == 10){
+                        //a spare happened here. Get the next score
+                            FrameScore tempScore = currentGame.getScores().get(i + 1);
+                            int temp = Integer.parseInt(tempScore.getFirstRow());
+                            //this check is to take care of the empty state we described as 14.
+                            //Needs some serious refactoring
+                            if (temp == 14){
+                                scores[i] = 10;
+                            } else {
+                                scores[i] = 10 + temp;
+                            }
+                    } else {
+                       scores[i] = Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow());
+                    }
+
+                    total = total + scores[i];
                 } else {
-                    scores[i] = Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow());
+                    total = total;
                 }
-
-                total = total + scores[i];
-
-                /*int temp = 0;
-                //add all previous scores
-                for (int j = i; j >= 0; j--){
-                    temp = temp + scores[j];
-                    Log.e("Score", String.valueOf(j));
-                    Log.e("Score", String.valueOf(temp));
-                }
-                scores[i] = temp;*/
             }
 
+            //add the last rows
+            FrameScore frameScore = currentGame.getScores().get(9);
+            total = total + Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow());
+            scores[9] = total;
+
+
+            //add the last score
+            if (currentGame.getLast_score() != 14){
+                total = total + currentGame.getLast_score();
+            }
+
+            if (currentGame.isGame_finished()){
+                setIn_progress_tag(View.INVISIBLE);
+            } else {
+                setIn_progress_tag(View.VISIBLE);
+            }
+
+            Long timeStamp = System.currentTimeMillis();
+            String temp = timeStamp.toString();
+
+            currentGame.setCurrent_frame(mainActivity.getCurrent_frame());
+            currentGame.setDate_updated(temp);
             saveGame(currentGame);
 
             total_score = String.format("%03d", total);
-            notifyPropertyChanged(BR._all);
 
+            notifyPropertyChanged(BR._all);
             mainActivity.displayScores(scores);
             //frameScore = currentGame.getScores().get(1);
 

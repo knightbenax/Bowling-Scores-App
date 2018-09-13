@@ -37,6 +37,9 @@ public interface GameDao {
     @Delete
     void delete(Game game);
 
+    @Query("DELETE FROM game WHERE uid = :uid ")
+    void deleteGame(String uid);
+
     @Query("DELETE FROM game")
     void deleteAll();
 

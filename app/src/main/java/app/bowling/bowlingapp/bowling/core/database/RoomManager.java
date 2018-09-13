@@ -57,5 +57,8 @@ public class RoomManager {
         appDatabase.gameDao().deleteAll();
     }
 
+    public void deleteGames(String uid){
+        appDatabase.gameDao().deleteGame(uid);
+    }
 
 }

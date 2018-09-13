@@ -11,6 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:paddingTop="@dimen/size_10"
+        android:clickable="true"
+        android:onClick="@{(v) -> model.disableSelected()}"
         android:layout_height="match_parent">
 
         <include
@@ -40,11 +42,12 @@
             android:layout_width="match_parent"
             android:id="@+id/games_list"
             app:layout_constraintTop_toBottomOf="@id/toolbar_link"
-            android:layout_marginLeft="@dimen/size_16"
-            android:layout_marginStart="@dimen/size_16"
-            android:layout_marginEnd="@dimen/size_16"
-            android:layout_marginRight="@dimen/size_16"
+            android:layout_marginLeft="@dimen/size_14"
+            android:layout_marginStart="@dimen/size_14"
+            android:layout_marginEnd="@dimen/size_14"
+            android:layout_marginRight="@dimen/size_14"
             android:layout_marginBottom="@dimen/size_50"
+            android:paddingBottom="@dimen/size_100"
             android:layout_height="wrap_content"/>
 
 

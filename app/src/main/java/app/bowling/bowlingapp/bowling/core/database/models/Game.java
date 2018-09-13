@@ -25,6 +25,26 @@ public class Game {
     @ColumnInfo(name = "date_updated")
     private String date_updated;
 
+    @ColumnInfo(name = "game_finished")
+    private boolean game_finished;
+
+    @ColumnInfo(name = "current_frame")
+    private int current_frame;
+
+    public int getLast_score() {
+        return last_score;
+    }
+
+    public void setLast_score(int last_score) {
+        this.last_score = last_score;
+    }
+
+    @ColumnInfo(name = "last_score")
+    private int last_score = 14;
+
+    @ColumnInfo(name = "last_box")
+    private boolean last_box = false;
+
     @TypeConverters(FrameScoreTypeConverter.class)
     private List<FrameScore> scores;
 
@@ -69,7 +89,28 @@ public class Game {
     }
 
 
+    public boolean isGame_finished() {
+        return game_finished;
+    }
 
+    public void setGame_finished(boolean date_finished) {
+        this.game_finished = date_finished;
+    }
 
+    public int getCurrent_frame() {
+        return current_frame;
+    }
+
+    public void setCurrent_frame(int current_frame) {
+        this.current_frame = current_frame;
+    }
+
+    public boolean isLast_box() {
+        return last_box;
+    }
+
+    public void setLast_box(boolean last_box) {
+        this.last_box = last_box;
+    }
 }
 

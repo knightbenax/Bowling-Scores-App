@@ -5,6 +5,10 @@
         <variable
             name="game"
             type="app.bowling.bowlingapp.bowling.core.models.ExtendedGame"/>
+
+        <variable
+            name="position"
+            type="Integer"/>
     </data>
 
 
@@ -13,6 +17,7 @@
         android:layout_width="match_parent"
         android:background="@drawable/black_trans"
         android:padding="@dimen/size_14"
+        android:id="@+id/parent"
         android:layout_marginBottom="@dimen/size_16"
         android:layout_height="wrap_content">
 
@@ -28,6 +33,11 @@
             <TextView
                 android:id="@+id/game_date"
                 android:text="@{game.date_started_readable}"
+                style="@style/ToolbarText" />
+
+            <TextView
+                android:text="@{`` + position}"
+                android:visibility="gone"
                 style="@style/ToolbarText" />
 
         </LinearLayout>
@@ -49,6 +59,7 @@
                 android:paddingTop="@dimen/size_4"
                 android:paddingRight="@dimen/size_8"
                 android:paddingLeft="@dimen/size_8"
+                android:visibility="@{game.in_progress_tag}"
                 android:paddingBottom="@dimen/size_4"
                 android:textColor="@color/colorAccent"
                 android:layout_height="wrap_content"/>

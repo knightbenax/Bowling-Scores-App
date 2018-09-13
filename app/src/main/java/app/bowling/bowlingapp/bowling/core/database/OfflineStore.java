@@ -33,6 +33,10 @@ public class OfflineStore {
         roomManager.deleteAllGames();
     }
 
+    public void deleteGames(String uid){
+        roomManager.deleteGames(uid);
+    }
+
     public Game getGameById(String uid){
         return roomManager.getGameById(uid);
     }

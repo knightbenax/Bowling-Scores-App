@@ -2,6 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:paddingTop="@dimen/size_10"
@@ -15,8 +17,8 @@
             layout="@layout/layout_game_screen_toolbar"/>
 
 
-        <ScrollView
-            android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
             android:layout_marginRight="@dimen/size_16"
             android:layout_marginLeft="@dimen/size_16"
             android:layout_marginTop="@dimen/size_32"
@@ -26,9 +28,8 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_marginBottom="@dimen/size_60"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
                 android:layout_height="wrap_content">
 
                 <include
@@ -36,21 +37,21 @@
                     layout="@layout/layout_frame"
                     android:id="@+id/first_row"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent" />
+                    android:layout_width="wrap_content" />
 
                 <include
                     android:layout_marginBottom="@dimen/size_32"
                     layout="@layout/layout_frame"
                     android:id="@+id/second_row"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent" />
+                    android:layout_width="wrap_content" />
 
                 <include
                     android:layout_marginBottom="@dimen/size_32"
                     layout="@layout/layout_frame"
                     android:id="@+id/third_row"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent" />
+                    android:layout_width="wrap_content" />
 
                 <include
                     android:id="@+id/fourth_row"
@@ -59,7 +60,7 @@
             </LinearLayout>
 
 
-        </ScrollView>
+        </HorizontalScrollView>
 
 
     </LinearLayout>

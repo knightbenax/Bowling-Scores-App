@@ -33,6 +33,10 @@ public class DataStore {
         offlineStore.deleteAllGames();
     }
 
+    public void deleteGames(String uid){
+        offlineStore.deleteGames(uid);
+    }
+
     public Game getGameById(String uid){
         return offlineStore.getGameById(uid);
     }
