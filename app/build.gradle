@@ -66,10 +66,9 @@ dependencies {
     }
 
     //testImplementation 'org.robolectric:robolectric:3.8'
-
     //To Support SDK 28 for now
     testImplementation 'org.robolectric:robolectric:4.0-alpha-3-SNAPSHOT'
-
+    testImplementation 'org.robolectric:shadows-support-v4:3.0'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
