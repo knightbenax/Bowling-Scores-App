@@ -31,14 +31,6 @@ public class Game {
     @ColumnInfo(name = "current_frame")
     private int current_frame;
 
-    public int getLast_score() {
-        return last_score;
-    }
-
-    public void setLast_score(int last_score) {
-        this.last_score = last_score;
-    }
-
     @ColumnInfo(name = "last_score")
     private int last_score = 14;
 
@@ -111,6 +103,14 @@ public class Game {
 
     public void setLast_box(boolean last_box) {
         this.last_box = last_box;
+    }
+
+    public int getLast_score() {
+        return last_score;
+    }
+
+    public void setLast_score(int last_score) {
+        this.last_score = last_score;
     }
 }
 

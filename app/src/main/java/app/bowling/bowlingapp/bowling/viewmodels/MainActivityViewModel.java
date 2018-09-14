@@ -187,8 +187,6 @@ public class MainActivityViewModel extends CoreViewModel {
     }
 
 
-
-
     public class ActivityGameScreenUIModel extends BaseObservable {
         String title = "";
 
@@ -507,13 +505,13 @@ public class MainActivityViewModel extends CoreViewModel {
             //add the last rows
             FrameScore frameScore = currentGame.getScores().get(9);
             total = total + Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow());
-            scores[9] = total;
-
 
             //add the last score
             if (currentGame.getLast_score() != 14){
                 total = total + currentGame.getLast_score();
             }
+
+            scores[9] = total;
 
             if (currentGame.isGame_finished()){
                 setIn_progress_tag(View.INVISIBLE);

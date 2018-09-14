@@ -11,7 +11,6 @@ import android.widget.EditText;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,7 +25,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
-import androidx.transition.TransitionSet;
 import app.bowling.bowlingapp.bowling.BowlingApplication;
 import app.bowling.bowlingapp.bowling.R;
 import app.bowling.bowlingapp.bowling.core.daggger.components.AppMainComponent;
@@ -893,7 +891,10 @@ public class MainActivity extends CoreActivity {
         if (oldGame.getLast_score() != 14){
             binding.layoutGameScreenLink.fourthRow.three.setText(String.valueOf(oldGame.getLast_score()));
             binding.layoutGameScreenLink.fourthRow.three.setEnabled(true);
+            setVisibility(binding.layoutGameScreenLink.fourthRow.three, View.VISIBLE);
             binding.layoutGameScreenLink.fourthRow.lastFrameParent.setWeightSum(3);
+            Log.e("Last Score", String.valueOf(oldGame.getLast_score()));
+            //Log.e("Last Score Text", binding.layoutGameScreenLink.fourthRow.three.getText().toString());
         }
 
         mainActivityViewModel.getActivityGameScreenUIModel().calculateScores();
@@ -1007,13 +1008,9 @@ public class MainActivity extends CoreActivity {
         }
 
         if (scores[9] != null){
-            int temp = 0;//scores[0] + scores[1];
-            for(int i = 9; i >= 0; i--){
-                temp = temp + scores[i];
-            }
 
             if (getCurrent_frame() >= 9){
-                binding.layoutGameScreenLink.fourthRow.scoreOne.setText(String.valueOf(temp));
+                binding.layoutGameScreenLink.fourthRow.scoreOne.setText(String.valueOf(scores[9]));
             }
 
         }

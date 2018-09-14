@@ -77,6 +77,8 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
         extendedGame.setCurrent_frame(game.getCurrent_frame());
         extendedGame.setGame_finished(game.isGame_finished());
         extendedGame.setAdapter_postion(position);
+        extendedGame.setLast_score(game.getLast_score());
+        extendedGame.setLast_box(game.isLast_box());
         extendedGames.add(extendedGame);
 
         holder.layoutSingleGameBinding.setGame(extendedGame);

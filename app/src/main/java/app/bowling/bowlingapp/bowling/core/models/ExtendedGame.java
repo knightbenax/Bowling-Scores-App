@@ -1,5 +1,6 @@
 package app.bowling.bowlingapp.bowling.core.models;
 
+import android.util.Log;
 import android.view.View;
 
 import java.util.Calendar;
@@ -113,7 +114,7 @@ public class ExtendedGame extends Game {
 
         int total;
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 9; i++){
             FrameScore frameScore = getScores().get(i);
             if(!frameScore.getFirstRow().equals("14") && !frameScore.getSecondRow().equals("14")){
                 if (Integer.parseInt(frameScore.getFirstRow()) == 10) {
@@ -140,20 +141,18 @@ public class ExtendedGame extends Game {
                 total_score = total_score + 0;
             }
 
-                /*int temp = 0;
-                //add all previous scores
-                for (int j = i; j >= 0; j--){
-                    temp = temp + scores[j];
-                    Log.e("Score", String.valueOf(j));
-                    Log.e("Score", String.valueOf(temp));
-                }
-
-                scores[i] = temp;*/
         }
 
         //add the last rows
         FrameScore frameScore = getScores().get(9);
         total_score = total_score + Integer.parseInt(frameScore.getFirstRow()) + Integer.parseInt(frameScore.getSecondRow());
+
+        //add the last score
+        if (getLast_score() != 14){
+            total_score = total_score + getLast_score();
+        }
+
+        Log.e("Last Score Inner", String.valueOf(getLast_score()));
 
         total_score_string = String.format("%03d", total_score);
     }
