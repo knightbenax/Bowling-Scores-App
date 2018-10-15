@@ -5,9 +5,9 @@ Android app to take and store bowling game scores. Built primarily to test the n
 
 
 ## Architecture
-Java
-Room
-MVVM
+- Java
+- Room
+- MVVM
 
 ![Screenshot](/Screenshots/onetwo.png)
 
