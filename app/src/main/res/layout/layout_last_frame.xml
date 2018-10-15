@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="java.lang.Integer" />
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityGameScreenUIModel"/>
+    </data>
+
+
+    <LinearLayout
+        style="@style/Frame">
+
+        <LinearLayout
+            style="@style/FrameRow.Right">
+
+            <LinearLayout
+                android:id="@+id/last_frame_parent"
+                style="@style/FrameRowTop">
+
+                <EditText
+                    android:id="@+id/one"
+                    android:onTextChanged="@{model.onFinalFirstScoreChanged}"
+                    style="@style/FrameRowScore.Left"
+                    />
+
+                <EditText
+                    android:id="@+id/two"
+                    android:onTextChanged="@{model.onFinalSecondScoreChanged}"
+                    style="@style/FrameRowScore.Right" />
+
+                <EditText
+                    android:id="@+id/three"
+                    android:visibility="gone"
+                    android:onTextChanged="@{model.onFinalScoreChanged}"
+                    style="@style/FrameRowScore" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/score_one"
+                style="@style/FrameScore" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

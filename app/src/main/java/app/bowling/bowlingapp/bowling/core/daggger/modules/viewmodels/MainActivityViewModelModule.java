@@ -1,19 +1,17 @@
 package app.bowling.bowlingapp.bowling.core.daggger.modules.viewmodels;
 
+import app.bowling.bowlingapp.bowling.core.daggger.modules.store.DataStoreModule;
+import app.bowling.bowlingapp.bowling.core.database.DataStore;
+import app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel;
 import dagger.Module;
 import dagger.Provides;
-import rabaapp.raba.app.raba.core.daggger.modules.network.RetrofitModule;
-import rabaapp.raba.app.raba.core.daggger.modules.store.DataStoreModule;
-import rabaapp.raba.app.raba.core.database.DataStore;
-import rabaapp.raba.app.raba.screens.mainactivity.viewmodel.MainActivityViewModel;
-import retrofit2.Retrofit;
 
 
-@Module(includes = {DataStoreModule.class, RetrofitModule.class})
+@Module(includes = {DataStoreModule.class})
 public class MainActivityViewModelModule {
 
     @Provides
-    public MainActivityViewModel provideHomeActivityViewModel(DataStore datastore, Retrofit retrofit) {
-        return new MainActivityViewModel(datastore, retrofit);
+    public MainActivityViewModel provideHomeActivityViewModel(DataStore datastore) {
+        return new MainActivityViewModel(datastore);
     }
 }

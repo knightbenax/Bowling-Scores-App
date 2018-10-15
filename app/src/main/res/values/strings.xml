@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Bowling</string>
+    <string name="games">Games</string>
+    <string name="search">Search</string>
+    <string name="trash">Trash</string>
+    <string name="no_games_played">No games played</string>
+    <string name="new_game">New Game</string>
+    <string name="cancel">Cancel</string>
+    <string name="start">Start</string>
+    <string name="player_name">Player Name</string>
+    <string name="back">Back</string>
+    <string name="_000">000</string>
+    <string name="in_progress">In Progress</string>
 </resources>

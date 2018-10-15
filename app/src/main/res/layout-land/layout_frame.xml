@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+        <import type="java.lang.Integer" />
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityGameScreenUIModel"/>
+    </data>
+
+    <LinearLayout
+       style="@style/Frame.Land">
+
+        <LinearLayout
+            style="@style/FrameRow.Left.Land">
+
+            <LinearLayout
+                style="@style/FrameRowTop">
+
+                <EditText
+                    android:id="@+id/one"
+                    android:onTextChanged="@{model.onFirstScoreChanged}"
+                    style="@style/FrameRowScore.Left"
+                     />
+
+                <EditText
+                    android:id="@+id/two"
+                    android:onTextChanged="@{model.onSecondScoreChanged}"
+                    style="@style/FrameRowScore.Right" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/score_one"
+                style="@style/FrameScore" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/FrameRow.Center.Land">
+
+            <LinearLayout
+                style="@style/FrameRowTop">
+
+                <EditText
+                    android:id="@+id/three"
+                    android:onTextChanged="@{model.onFirstScoreChanged}"
+                    style="@style/FrameRowScore.Left"
+                    />
+
+                <EditText
+                    android:id="@+id/four"
+                    android:onTextChanged="@{model.onSecondScoreChanged}"
+                    style="@style/FrameRowScore.Right" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/score_two"
+                style="@style/FrameScore" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/FrameRow.Right.Land">
+
+            <LinearLayout
+                style="@style/FrameRowTop">
+
+                <EditText
+                    android:id="@+id/five"
+                    android:onTextChanged="@{model.onFirstScoreChanged}"
+                    style="@style/FrameRowScore.Left"
+                    />
+
+                <EditText
+                    android:id="@+id/six"
+                    android:onTextChanged="@{model.onSecondScoreChanged}"
+                    style="@style/FrameRowScore.Right" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/score_three"
+                style="@style/FrameScore" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

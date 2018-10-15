@@ -1,5 +1,6 @@
 package app.bowling.bowlingapp.bowling.core.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -7,23 +8,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
-import rabaapp.raba.app.raba.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import androidx.appcompat.app.AppCompatActivity;
+import app.bowling.bowlingapp.bowling.R;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
-public class CoreActivity extends RxAppCompatActivity {
+public class CoreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        settingStatusBarTransparent();
         super.onCreate(savedInstanceState);
+        //settingStatusBarTransparent();
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     public void settingStatusBarTransparent() {
@@ -50,4 +53,24 @@ public class CoreActivity extends RxAppCompatActivity {
             //setStatusBarTranslucent(true);
         }
     }
+
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
 }

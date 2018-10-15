@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityUIModel"/>
+    </data>
+
+    <LinearLayout
+        android:paddingLeft="@dimen/size_12"
+        android:paddingRight="@dimen/size_12"
+        android:paddingBottom="@dimen/size_16"
+        android:paddingTop="@dimen/size_16"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/Dialog.Header"
+            android:text="@string/new_game"
+            />
+
+        <EditText
+            android:hint="@string/player_name"
+            android:id="@+id/player_name"
+            android:text="@={model.player_name}"
+            style="@style/Dialog.EditText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:layout_height="wrap_content">
+
+            <Button
+                style="@style/Dialog.Button"
+                android:id="@+id/cancel_button"
+                android:onClick="@{(v) -> model.cancelDialog(cancelButton)}"
+                android:text="@string/cancel"
+                />
+
+            <Button
+                style="@style/Dialog.Button"
+                android:onClick="@{(v) -> model.startGame(startButton)}"
+                android:id="@+id/start_button"
+                android:text="@string/start"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

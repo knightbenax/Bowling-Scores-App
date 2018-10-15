@@ -1,19 +1,18 @@
 package app.bowling.bowlingapp.bowling.core.daggger.modules.store;
 
 
+import app.bowling.bowlingapp.bowling.core.database.DataStore;
+import app.bowling.bowlingapp.bowling.core.database.OfflineStore;
 import dagger.Module;
 import dagger.Provides;
-import rabaapp.raba.app.raba.core.database.DataStore;
-import rabaapp.raba.app.raba.core.database.OfflineStore;
-import rabaapp.raba.app.raba.core.database.OnlineStore;
 
 
-@Module(includes = {OfflineStoreModule.class, OnlineStoreModule.class})
+@Module(includes = {OfflineStoreModule.class})
 public class DataStoreModule {
 
     @Provides
-    public DataStore provideDataStore(OfflineStore offlineStore, OnlineStore onlineStore) {
-        return new DataStore(offlineStore, onlineStore);
+    public DataStore provideDataStore(OfflineStore offlineStore) {
+        return new DataStore(offlineStore);
     }
 
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityUIModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/size_10"
+        android:clickable="true"
+        android:onClick="@{(v) -> model.disableSelected()}"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_link"
+            style="@style/LayoutMatchWidth"
+            app:layout_constraintTop_toTopOf="parent"
+            layout="@layout/layout_toolbar"/>
+
+
+       <LinearLayout
+           style="@style/NoGamesHolder"
+           android:id="@+id/no_games_holder"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent">
+
+           <ImageView style="@style/NoGamesImage" />
+
+           <TextView
+               style="@style/NoGamesText"
+               android:text="@string/no_games_played" />
+       </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/games_list"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_link"
+            android:layout_marginLeft="@dimen/size_14"
+            android:layout_marginStart="@dimen/size_14"
+            android:layout_marginEnd="@dimen/size_14"
+            android:layout_marginRight="@dimen/size_14"
+            android:layout_marginBottom="@dimen/size_50"
+            android:paddingBottom="@dimen/size_100"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/size_100">
+
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottom_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/colorAccent"
+                app:fabCradleMargin="@dimen/size_8"
+                app:fabCradleRoundedCornerRadius="@dimen/size_4"
+                android:layout_gravity="bottom"
+                app:fabAlignmentMode="end"
+                 />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                style="@style/LayoutWrapContent"
+                android:src="@drawable/plus"
+                app:backgroundTint = "@color/black"
+                android:scaleType="center"
+                app:borderWidth="@dimen/size_0"
+                android:onClick="@{(v) -> model.showNewDialog(fab)}"
+                app:fabSize="normal"
+                app:layout_anchor="@id/bottom_app_bar" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

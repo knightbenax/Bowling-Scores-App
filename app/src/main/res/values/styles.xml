@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +6,306 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
+
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    //<!-- Hack for Robolectric to run with appcompat.v7 -->
+    <style name="RoboAppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar"/>
+
+    <style name="Custom.Widget.Toolbar" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="maxButtonHeight">48dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="LayoutMatchParent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="LayoutWrapContent">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="LayoutMatchWidth">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="LayoutMatchHeight">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="MainBackground" parent="LayoutMatchParent">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="Toolbar">
+        <item name="android:layout_marginTop">@dimen/size_18</item>
+        <item name="android:contentInsetLeft" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetStart" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetRight" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetEnd" tools:targetApi="lollipop">0dp</item>
+        <item name="android:contentInsetStartWithNavigation" tools:targetApi="n">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="ToolbarPanel" parent="LayoutWrapContent">
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Toolbar.Parent">
+        <item name="android:layout_width">@dimen/size_0</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginLeft">@dimen/size_6</item>
+        <item name="android:layout_marginTop">@dimen/size_6</item>
+        <item name="android:layout_marginBottom">@dimen/size_4</item>
+    </style>
+
+    <style name="ToolbarHeader" parent="LayoutWrapContent">
+        <item name="android:textSize">@dimen/font_26</item>
+        <item name="android:layout_marginBottom">@dimen/size_6</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
+    </style>
+
+    <style name="SingleGameParent">
+        <item name="android:layout_width">@dimen/size_0</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">@dimen/size_4</item>
+    </style>
+
+    <style name="SingleGameHeader" parent="LayoutWrapContent">
+        <item name="android:textSize">@dimen/font_20</item>
+        <item name="android:layout_marginBottom">@dimen/size_6</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
+    </style>
+
+    <style name="ToolbarText" parent="LayoutWrapContent">
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:lineSpacingExtra">@dimen/size_4</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Regular.otf</item>
+    </style>
+
+    <style name="Score.White.Text" parent="White.Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">@dimen/size_6</item>
+        <item name="android:textAlignment" tools:ignore="NewApi">center</item>
+        <item name="android:textSize">@dimen/font_26</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/black</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Black.otf</item>
+    </style>
+
+    <style name="NoGamesImage">
+        <item name="android:contentDescription">@string/no_games_played</item>
+        <item name="android:layout_width">@dimen/size_150</item>
+        <item name="android:layout_height">@dimen/size_150</item>
+        <item name="android:src">@drawable/bowls</item>
+        <item name="android:layout_marginBottom">@dimen/size_10</item>
+    </style>
+
+    <style name="NoGamesHolder" parent="LayoutWrapContent">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="NoGamesText" parent="White.Text">
+        <item name="fontPath">fonts/Cera/Cera Pro Medium.otf</item>
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+
+    <style name="Text" parent="LayoutWrapContent">
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="White.Text" parent="Text">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="Black.Text" parent="Text">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Dialog.Black.Text" parent="Black.Text">
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="Frame" parent="LayoutMatchWidth">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">3</item>
+    </style>
+
+    <style name="Frame.Land" parent="LayoutWrapContent">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="FrameRow">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@drawable/bluw_white_border</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FrameRow.Left">
+        <item name="android:layout_marginRight">-1dp</item>
+        <item name="android:layout_marginEnd">-1dp</item>
+    </style>
+
+    <style name="FrameRow.Left.Land" parent="LayoutWrapContent">
+        <item name="android:layout_width">@dimen/size_120</item>
+        <item name="android:background">@drawable/bluw_white_border</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">-1dp</item>
+        <item name="android:layout_marginEnd">-1dp</item>
+    </style>
+
+    <style name="FrameRow.Center">
+        <item name="android:layout_marginLeft">-2dp</item>
+        <item name="android:layout_marginStart">-2dp</item>
+        <item name="android:layout_marginRight">-2dp</item>
+        <item name="android:layout_marginEnd">-2dp</item>
+    </style>
+
+    <style name="FrameRow.Center.Land" parent="LayoutWrapContent">
+        <item name="android:layout_width">@dimen/size_120</item>
+        <item name="android:layout_marginLeft">-2dp</item>
+        <item name="android:layout_marginStart">-2dp</item>
+        <item name="android:layout_marginRight">-2dp</item>
+        <item name="android:layout_marginEnd">-2dp</item>
+        <item name="android:background">@drawable/bluw_white_border</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FrameRow.Right">
+        <item name="android:layout_marginLeft">-1dp</item>
+        <item name="android:layout_marginStart">-1dp</item>
+    </style>
+
+    <style name="FrameRow.Right.Land" parent="LayoutWrapContent">
+        <item name="android:layout_width">@dimen/size_120</item>
+        <item name="android:layout_marginLeft">-1dp</item>
+        <item name="android:layout_marginStart">-1dp</item>
+        <item name="android:background">@drawable/bluw_white_border</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FrameRowTop" parent="LayoutMatchWidth">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="FrameRowScore">
+        <item name="android:layout_width">@dimen/size_0</item>
+        <item name="android:background">@drawable/score_bg</item>
+        <item name="android:digits">012345678910</item>
+        <item name="android:maxLength">2</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/font_20</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:inputType">number</item>
+        <item name="android:layout_height">@dimen/size_50</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="FrameRowScore.Left" parent="FrameRowScore">
+        <item name="android:layout_marginRight">-1dp</item>
+        <item name="android:layout_marginEnd">-1dp</item>
+    </style>
+
+    <style name="FrameRowScore.Right" parent="FrameRowScore">
+        <item name="android:layout_marginLeft">-1dp</item>
+        <item name="android:layout_marginStart">-1dp</item>
+    </style>
+
+    <style name="FrameScore">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">-2dp</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">@dimen/font_20</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@drawable/bluw_white_border</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <style name="Dialog.EditText" parent="LayoutMatchWidth">
+        <item name="android:inputType">text|textCapSentences</item>
+        <item name="android:layout_marginTop">@dimen/size_26</item>
+        <item name="android:layout_marginBottom">@dimen/size_24</item>
+        <item name="android:hint">@string/player_name</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/bottom_border_black</item>
+    </style>
+
+    <style name="Dialog.Header" parent="Black.Text">
+        <item name="android:textSize">@dimen/font_18</item>
+        <item name="fontPath">fonts/Cera/Cera Pro Bold.otf</item>
+    </style>
+
+
+    <style name="Dialog.Button" parent="Dialog.Black.Text">
+       <item name="android:background">@drawable/round_corner_black</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:paddingTop">@dimen/size_10</item>
+        <item name="android:paddingBottom">@dimen/size_10</item>
+        <item name="android:paddingLeft">@dimen/size_14</item>
+        <item name="android:paddingRight">@dimen/size_14</item>
+        <item name="android:minHeight">@dimen/size_0</item>
+        <item name="android:minWidth">@dimen/size_0</item>
+        <item name="android:layout_marginLeft">@dimen/size_12</item>
+    </style>
+
+    <!--<style name="BottomAppBar" parent="LayoutMatchWidth">
+        <item name="app:backgroundTint">@color/colorAccent</item>
+        <item name="app:fabCradleMargin">@dimen/size_8</item>
+        <item name="app:fabCradleRoundedCornerRadius">@dimen/size_4</item>
+        <item name="app:fabAlignmentMode">end</item>
+    </style>
+
+    <style name="FabButton" parent="LayoutWrapContent">
+        <item name="app:backgroundTint">@color/black</item>
+        <item name="app:borderWidth">@dimen/size_0</item>
+        <item name="app:fabSize">normal</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="Plus" parent="FabButton">
+        <item name="android:src">@drawable/plus</item>
+        <item name="app:layout_anchor">center</item>
+    </style>-->
 
 </resources>
