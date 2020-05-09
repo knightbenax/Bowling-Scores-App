@@ -2,10 +2,12 @@ package app.bowling.bowlingapp.bowling.viewmodels;
 
 import android.content.Context;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.databinding.BaseObservable;
+import androidx.databinding.DataBindingUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,8 +16,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import androidx.databinding.BaseObservable;
-import androidx.databinding.DataBindingUtil;
 import app.bowling.bowlingapp.bowling.BR;
 import app.bowling.bowlingapp.bowling.R;
 import app.bowling.bowlingapp.bowling.core.customviews.BowlingDialog;
