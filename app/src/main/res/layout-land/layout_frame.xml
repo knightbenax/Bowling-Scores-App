@@ -3,7 +3,6 @@
 
 
     <data>
-        <import type="java.lang.Integer" />
         <variable
             name="model"
             type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityGameScreenUIModel"/>

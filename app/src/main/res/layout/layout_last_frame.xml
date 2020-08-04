@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="java.lang.Integer" />
         <variable
             name="model"
             type="app.bowling.bowlingapp.bowling.viewmodels.MainActivityViewModel.ActivityGameScreenUIModel"/>
@@ -21,9 +20,8 @@
 
                 <EditText
                     android:id="@+id/one"
-                    android:onTextChanged="@{model.onFinalFirstScoreChanged}"
                     style="@style/FrameRowScore.Left"
-                    />
+                    android:onTextChanged="@{model::onFinalFirstScoreChanged}" />
 
                 <EditText
                     android:id="@+id/two"
